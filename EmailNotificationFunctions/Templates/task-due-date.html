@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #ffc107; color: #333; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f9f9f9; }
+        .warning-box { background-color: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 15px 0; }
+        .button { display: inline-block; padding: 12px 24px; background-color: #ffc107; color: #333; text-decoration: none; border-radius: 5px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Task Due Date Reminder</h1>
+        </div>
+        <div class="content">
+            <p>Hello {{RecipientName}},</p>
+            <p>This is a reminder that the following task is due today:</p>
+            <div class="warning-box">
+                <p><strong>Task:</strong> {{TaskTitle}}</p>
+                <p><strong>Task Code:</strong> {{TaskCode}}</p>
+                <p><strong>Project:</strong> {{ProjectName}}</p>
+                <p><strong>Due Date:</strong> {{DueDate}}</p>
+                <p><strong>Priority:</strong> {{Priority}}</p>
+                <p><strong>Assigned To:</strong> {{AssignedToName}}</p>
+            </div>
+            <a href="{{TaskUrl}}" class="button">View Task</a>
+            <p>Please ensure this task is completed on time.</p>
+            <p>Best regards,<br>Project Allocation System</p>
+        </div>
+    </div>
+</body>
+</html>

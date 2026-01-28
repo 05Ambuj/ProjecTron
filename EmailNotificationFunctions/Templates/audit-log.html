@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #dc3545; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f9f9f9; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Audit Log Summary</h1>
+            <p>{{ReportDate}}</p>
+        </div>
+        <div class="content">
+            <p>Hello Admin,</p>
+            <p>Here is the audit log summary for the period:</p>
+            
+            <h3>Summary Statistics</h3>
+            <ul>
+                <li>Total Actions: {{TotalActions}}</li>
+                <li>Users Involved: {{UserCount}}</li>
+                <li>Entities Modified: {{EntityCount}}</li>
+            </ul>
+
+            <h3>Recent Audit Logs</h3>
+            {{AuditLogTable}}
+
+            <p>Best regards,<br>Project Allocation System</p>
+        </div>
+    </div>
+</body>
+</html>

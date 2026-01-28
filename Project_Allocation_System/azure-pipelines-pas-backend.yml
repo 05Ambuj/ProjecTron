@@ -1,0 +1,59 @@
+# Trigger ONLY when pushing to PAS_BACKEND_DEPLOYMENT branch
+trigger:
+  branches:
+    include:
+      - PAS_BACKEND_DEPLOYMENT
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  azureSubscription: 'AIP_TRAINING_CONN'
+  webAppName: 'pip-pas-backend-am'
+  projectPath: 'Project_Allotment_System/Project_Allocation_System/Project_Allocation_System.csproj'
+  artifactName: 'pas-backend.zip'
+
+steps:
+
+# Install .NET SDK (adjust version if needed)
+- task: UseDotNet@2
+  displayName: 'Install .NET SDK'
+  inputs:
+    packageType: sdk
+    version: '8.x'
+
+- script: |
+    echo "Listing repo root"
+    dir
+    echo "Listing Project_Allotment_System"
+    dir Project_Allotment_System
+    echo "Listing Project_Allocation_System"
+    dir Project_Allotment_System\Project_Allocation_System
+  displayName: 'Debug repo structure'
+
+# Restore + Build + Publish
+- script: |
+    echo Restoring...
+    dotnet restore $(projectPath)
+
+    echo Publishing...
+    dotnet publish $(projectPath) -c Release -o "$(Build.ArtifactStagingDirectory)/publish"
+  displayName: 'Build & Publish PAS Backend'
+
+# Zip the published output
+- task: ArchiveFiles@2
+  displayName: 'Create ZIP Artifact'
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/publish'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(artifactName)'
+
+# Deploy to Azure App Service
+- task: AzureWebApp@1
+  displayName: 'Deploy PAS Backend to Azure App Service'
+  inputs:
+    azureSubscription: $(azureSubscription)
+    appType: webApp
+    appName: $(webAppName)
+    package: '$(Build.ArtifactStagingDirectory)/$(artifactName)'

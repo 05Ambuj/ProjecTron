@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Project_Allocation_System.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\EmailNotificationFunctions\\EmailNotificationFunctions.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

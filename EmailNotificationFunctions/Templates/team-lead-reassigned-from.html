@@ -1,0 +1,32 @@
+ad<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #ffc107; color: #333; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f9f9f9; }
+        .info-box { background-color: white; padding: 15px; border-left: 4px solid #ffc107; margin: 15px 0; }
+        .button { display: inline-block; padding: 12px 24px; background-color: #ffc107; color: #333; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Team Lead Reassigned</h1>
+        </div>
+        <div class="content">
+            <p>Hello {{RecipientName}},</p>
+            <p>The following team has been reassigned to a new Team Lead:</p>
+            <div class="info-box">
+                <p><strong>Team Name:</strong> {{TeamName}}</p>
+                <p><strong>Project:</strong> {{ProjectName}} ({{ProjectCode}})</p>
+                <p><strong>New Team Lead:</strong> {{NewTeamLeadName}}</p>
+            </div>
+            <p>You are no longer the Team Lead for this team. If you have any questions, please contact your administrator.</p>
+            <a href="{{ProjectUrl}}" class="button">View Project</a>
+            <p>Best regards,<br>Project Allocation System</p>
+        </div>
+    </div>
+</body>
+</html>
